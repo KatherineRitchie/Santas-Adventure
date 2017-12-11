@@ -27,12 +27,12 @@ public class SantasAdventure {
 	public static void main(String[] args) {
 		System.out.println("/'Twas the night before Christmas, and all through the house");
 		System.out.println("not a creature was stirring, not even a mouse...");
-		System.out.println("Press any key to begin...");
-
 		System.out.println("As dry leaves that before the wild hurricane fly,");
 		System.out.println("When they meet with an obstacle, mount to the sky;");
 		System.out.println("So up to the house-top the coursers they flew,");
 		System.out.println("With the sleigh full of Toys - and St. Nicholas too");
+		System.out.println("");
+		System.out.println("Hello Santa!!! You need to deliver all of the presents and spread holiday cheer. Press the number keys to play.");
 
 		goOutdoors();
 		sc.close();
@@ -43,8 +43,13 @@ public class SantasAdventure {
 	 * goOutdoors()
 	 */
 	public static void goOutdoors() {
-		System.out.println("\n" + "You are outside, would you like to [1] Visit the mansion "
-				+ "[2] Visit the apartment [3] Visit the house  or [4] Do a trick?");
+	    if (goToMansion || goToApartment || goToHouse) {
+	        System.out.println("\n" + "You are outside, would you like to [1] Visit the mansion "
+	                + "[2] Visit the apartment [3] Visit the house or [4] Do a trick?");
+	    } else {
+	        System.out.println("Would you like to [4] Do a trick or [5] exit the game to enjoy Christmas!!");
+	        System.out.println("");
+	    }
 
 		while (!sc.hasNextInt()) {
 			sc.next();
@@ -85,7 +90,9 @@ public class SantasAdventure {
 		case 4:
 			goTricks();
 			break;
-
+		case 5:
+		    printTree();
+		    break;
 		default:
 			System.out.println("That's not a valid input !");
 			goOutdoors();
@@ -98,6 +105,7 @@ public class SantasAdventure {
 	 */
 	public static void goTricks() {
 		System.out.println("Would you like to [1] Do a flip? [2] Laugh merrily" + " or [3] Spread good cheer?");
+		System.out.println("");
 
 		while (!sc.hasNextInt()) {
 			sc.next();
@@ -141,12 +149,14 @@ public class SantasAdventure {
 	 */
 	public static void goHouse() {
 		goToHouse = false;
-		
+
         System.out.println("The children were nestled all snug in their beds,");
         System.out.println("While visions of sugar-plums danced in their heads.");
         System.out.println("But then ! unexpectedly, you hear the sound of a child waking up !!!!!");
         System.out.println("Do you: [1] Hide [2] Stuff stockings quickly! even though it's messy "
                            + "[3] speak with the child");
+        System.out.println("");
+
         int houseOneNum = sc.nextInt();
         switch (houseOneNum) {
             case 1: System.out.println("\"You are santa and hiding!! this is pathetic\"");
@@ -195,6 +205,7 @@ public class SantasAdventure {
 		System.out.println("Would you like to:");
 		System.out.println("[1] Crawl down the fire escape?");
 		System.out.println("[2] Enter through the door?");
+		System.out.println("");
 
 		int enterNum = sc.nextInt();
 
@@ -203,7 +214,7 @@ public class SantasAdventure {
 			System.out.println("You spot two windows! Do you:");
 			System.out.println("[1] Enter in window 1" + "\n" + "[2] Enter in window 2");
 			int windowNum = sc.nextInt();
-			
+
 			switch (windowNum) {
 			case 1:
 				System.out.println("You're in a bathroom!");
@@ -213,81 +224,81 @@ public class SantasAdventure {
 				int bathroom = sc.nextInt();
 				switch (bathroom) {
 				case 1:
-					System.out.println("Congradulations! You increased your cheer!");
+					System.out.println("Congratulations! You increased your cheer!");
 					santa.incrementCheer();
 					System.out.println("Now your CHEER is " + santa.getCheer());
 					System.out.println("Now let's look for the tree" + "\n" + "Do you: ");
 					System.out.println("[1] Go to the left");
 					System.out.println("[2] Go to the right");
 					int next = sc.nextInt();
-					
+
 					switch (next) {
-					case 1: 
-						System.out.println("Congradulations! You found the tree!");
+					case 1:
+						System.out.println("Congratulations! You found the tree!");
 						System.out.println("Let's deliver the presents and go to the next house!");
 						goOutdoors();
 					case 2:
-						System.out.println("Congradulations! You found the tree!");
+						System.out.println("Congratulations! You found the tree!");
 						System.out.println("Let's deliver the presents and go to the next house!");
 						goOutdoors();
 					}
-					
+
 				case 2:
-					System.out.println("Congradulations! You found the tree!");
+					System.out.println("Congratulations! You found the tree!");
 					System.out.println("Let's deliver the presents and go to the next house!");
 					goOutdoors();
 				}
-			
+
 			case 2:
 				System.out.println("You walked into the kitchen!");
 				System.out.println("There are cookies on the table." + "\n" + "Do you: ");
 				System.out.println("[1] Eat them");
 				System.out.println("[2] Leave them be");
 				int kitchen = sc.nextInt();
-				
+
 				switch (kitchen) {
 				case 1:
 					System.out.println("Blech! They were gluten free cookies!");
 					santa.decrementCheer();
 					santa.decrementHolidaySpirit();
-					System.out.println("You lost CHEER and HOLIDAY SPIRIT." + "\n" + "Now your CHEER is: " + 
+					System.out.println("You lost CHEER and HOLIDAY SPIRIT." + "\n" + "Now your CHEER is: " +
 					santa.getCheer() + "\n" + "Now your HOLIDAY SPIRIT is: " + santa.getHolidaySpirit());
 					System.out.println("Let's deliver the presents and leave this house.");
 					goOutdoors();
-					
+
 				case 2:
-					System.out.println("Congradulations! You found the tree!");
+					System.out.println("Congratulations! You found the tree!");
 					System.out.println("Let's deliver the presents and go to the next house!");
 					goOutdoors();
 				}
 			}
-		
-		case 2: 
+
+		case 2:
 			System.out.println("You walked into the kitchen!");
 			System.out.println("There are cookies on the table." + "\n" + "Do you: ");
 			System.out.println("[1] Eat them");
 			System.out.println("[2] Leave them be");
 			int kitchen = sc.nextInt();
-			
+
 			switch (kitchen) {
 			case 1:
 				System.out.println("Blech! They were gluten free cookies!");
 				santa.decrementCheer();
 				santa.decrementHolidaySpirit();
-				System.out.println("You lost CHEER and HOLIDAY SPIRIT." + "\n" + "Now your CHEER is: " + 
+				System.out.println("You lost CHEER and HOLIDAY SPIRIT." + "\n" + "Now your CHEER is: " +
 				santa.getCheer() + "\n" + "Now your HOLIDAY SPIRIT is: " + santa.getHolidaySpirit());
 				System.out.println("Let's deliver the presents and leave this house.");
 				goOutdoors();
-				
+
 			case 2:
-				System.out.println("Congradulations! You found the tree!");
+				System.out.println("Congratulations! You found the tree!");
 				System.out.println("Let's deliver the presents and go to the next house!");
 				goOutdoors();
 			}
 		}
 	}
-			
-	
+
+
 
 	/**
 	 * This is the mansion method returns nothing, but lovely words.
@@ -297,6 +308,7 @@ public class SantasAdventure {
 		System.out.println("Welcome to the mansion! What a maze! Would you like to:");
 		System.out.println("[1] Go left");
 		System.out.println("[2] Go right");
+		System.out.println("");
 
 		int mansionNum = sc.nextInt();
 
@@ -363,6 +375,45 @@ public class SantasAdventure {
 				}
 			}
 		}
-	}
-}
 
+
+	}
+	   public static void printTree() {
+	       System.out.println("");
+	        String asciiArt = "      __,_,_,___)          _______\n" +
+	                "    (--| | |             (--/    ),_)        ,_) \n" +
+	                "       | | |  _ ,_,_        |     |_ ,_ ' , _|_,_,_, _  ,\n" +
+	                "     __| | | (/_| | (_|     |     | ||  |/_)_| | | |(_|/_)___,\n" +
+	                "    (      |___,   ,__|     \\____)  |__,           |__,\n" +
+	                "\n" +
+	                "                            |                         _...._\n" +
+	                "                         \\  _  /                    .::o:::::.\n" +
+	                "                          (\\o/)                    .:::'''':o:.\n" +
+	                "                      ---  / \\  ---                :o:_    _:::\n" +
+	                "                           >*<                     `:}_>()<_{:'\n" +
+	                "                          >0<@<                 @    `'//\\\\'`    @ \n" +
+	                "                         >>>@<<*              @ #     //  \\\\     # @\n" +
+	                "                        >@>*<0<<<           __#_#____/'____'\\____#_#__\n" +
+	                "                       >*>>@<<<@<<         [__________________________]\n" +
+	                "                      >@>>0<<<*<<@<         |=_- .-/\\ /\\ /\\ /\\--. =_-|\n" +
+	                "                     >*>>0<<@<<<@<<<        |-_= | \\ \\\\ \\\\ \\\\ \\ |-_=-|\n" +
+	                "                    >@>>*<<@<>*<<0<*<       |_=-=| / // // // / |_=-_|\n" +
+	                "      \\*/          >0>>*<<@<>0><<*<@<<      |=_- |`-'`-'`-'`-'  |=_=-|\n" +
+	                "  ___\\\\U//___     >*>>@><0<<*>>@><*<0<<     | =_-| o          o |_==_| \n" +
+	                "  |\\\\ | | \\\\|    >@>>0<*<<0>>@<<0<<<*<@<    |=_- | !     (    ! |=-_=|\n" +
+	                "  | \\\\| | _(UU)_ >((*))_>0><*<0><@<<<0<*<  _|-,-=| !    ).    ! |-_-=|_\n" +
+	                "  |\\ \\| || / //||.*.*.*.|>>@<<*<<@>><0<<@</=-((=_| ! __(:')__ ! |=_==_-\\\n" +
+	                "  |\\\\_|_|&&_// ||*.*.*.*|_\\\\db//__     (\\_/)-=))-|/^\\=^=^^=^=/^\\| _=-_-_\\\n" +
+	                "  \"\"\"\"|'.'.'.|~~|.*.*.*|     ____|_   =('.')=//   ,------------.      \n" +
+	                "  jgs |'.'.'.|   ^^^^^^|____|>>>>>>|  ( ~~~ )/   (((((((())))))))   \n" +
+	                "      ~~~~~~~~         '\"\"\"\"`------'  `w---w`     `------------'\n" +
+	                "";
+	        System.out.println(asciiArt);
+	        System.out.println("Your HOLIDAY SPIRT is: " + santa.getHolidaySpirit());
+	        System.out.println("Your WARMTH is: " + santa.getWarmth());
+	        System.out.println("Your CHEER is: " + santa.getCheer());
+	        System.out.println("HAPPY HOLIDAYS!!!");
+	        System.exit(0);
+
+	    }
+}
